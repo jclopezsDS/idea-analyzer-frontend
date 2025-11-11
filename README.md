@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# pitch-analyzer (Frontend)
 
-## Getting Started
+Frontend world-class para análisis de startups con IA.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js 14 (App Router)
+- Tailwind CSS v4  
+- shadcn/ui + Framer Motion
+- React Hook Form + Zod
+
+## Paleta 30x
+
+```css
+Primary: #010101   (Negro potencia)
+Green:   #eeff8d   (Verde X)
+Cream:   #f2f2f2   (Crema movimiento)
+Beige:   #dcd5c3   (Beige crecimiento)
+Gray:    #414242   (Gris vibración)
+Orange:  #ffa46f   (Naranja impacto)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**URL:** http://localhost:3000
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- Copy top 1%: "Descubre si tu startup tiene futuro"
+- Form dual (Idea/Deck) con validación Zod
+- File upload drag & drop
+- Micro-interacciones sutiles
+- Success page con download PDF
+- Mobile-first responsive
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estructura
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+/app              Pages y layout
+/components       Hero, Form, Features, Footer
+/lib              Validations (Zod) y types
+/public/assets    Logos e iconos 30x
+```
 
-## Deploy on Vercel
+## Conectar con Backend
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ya está conectado a `http://localhost:8002`. Para cambiar:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```typescript
+// components/AnalysisForm.tsx línea 71
+const response = await fetch('TU_API_URL/analyze/idea', ...)
+```
+
+Ver `/docs` en el root para specs completas.
