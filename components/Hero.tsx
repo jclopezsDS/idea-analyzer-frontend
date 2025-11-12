@@ -12,79 +12,85 @@ export function Hero() {
   }
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-6 bg-cream relative">
+    <section className="relative min-h-screen flex flex-col items-center justify-between py-16 md:py-20 px-6 bg-cream">
+      {/* Logo */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex flex-col items-center text-center"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="w-20 h-20 md:w-24 md:h-24 relative"
       >
-        <div className="mb-16 w-16 h-16 relative">
-          <Image
-            src="/assets/logos/logo.svg"
-            alt="30x"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
+        <Image
+          src="/assets/logos/logo.svg"
+          alt="30x"
+          fill
+          className="object-contain"
+          priority
+        />
+      </motion.div>
 
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center max-w-4xl mb-6 tracking-tight leading-[1.05]">
+      {/* Main Content - Centrado verticalmente */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+        className="flex flex-col items-center text-center max-w-5xl -mt-12"
+      >
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-8 tracking-tight leading-[1.05]">
           Descubre si tu startup tiene{" "}
-          <span className="text-primary relative">
+          <span className="text-primary relative inline-block">
             futuro.
-            <span className="absolute bottom-0 left-0 right-0 h-[0.15em] bg-green"></span>
+            <span className="absolute bottom-1 md:bottom-2 left-0 right-0 h-[0.15em] bg-green"></span>
           </span>
           <br />
-          <span className="text-gray/90">Ahora mismo.</span>
+          <span className="text-gray/90 text-4xl md:text-6xl lg:text-7xl">Ahora mismo.</span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-gray text-center max-w-2xl mb-12">
+        <p className="text-lg md:text-xl lg:text-2xl text-gray/80 max-w-2xl mb-10 leading-relaxed">
           IA entrenada en +$500M de rondas analiza tu deck en 90 segundos
         </p>
 
         <Button
           onClick={scrollToForm}
           size="lg"
-          className="bg-primary text-green hover:bg-primary/90 px-8 py-6 text-lg group transition-all duration-200 hover:translate-y-[-2px] hover:shadow-[0_8px_32px_rgba(238,255,141,0.3)]"
+          className="bg-primary text-cream hover:bg-primary/95 px-10 py-7 text-base md:text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl shadow-lg"
         >
           Ver mi score en 60 segundos
           <motion.div
-            animate={{ y: [0, 4, 0] }}
+            animate={{ y: [0, 3, 0] }}
             transition={{
-              duration: 1.5,
+              duration: 1.8,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           >
-            <ArrowDown className="ml-2 w-5 h-5" />
+            <ArrowDown className="ml-3 w-5 h-5" />
           </motion.div>
         </Button>
       </motion.div>
 
-      <div className="absolute bottom-12 left-0 right-0">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-12 md:gap-16 text-center text-sm text-gray/60"
-          >
-            <div>
-              <p className="text-2xl font-bold text-primary">2,847</p>
-              <p>Startups analizadas</p>
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-primary">$420M+</p>
-              <p>Levantado por usuarios</p>
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-primary">&lt; 90s</p>
-              <p>Tiempo promedio</p>
-            </div>
-          </motion.div>
+      {/* Stats - Bottom */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.7 }}
+        className="w-full max-w-4xl"
+      >
+        <div className="flex flex-wrap justify-center gap-16 md:gap-24 text-center">
+          <div className="flex flex-col items-center">
+            <p className="text-3xl md:text-4xl font-bold text-primary mb-1">2,847</p>
+            <p className="text-sm md:text-base text-gray/70">Startups analizadas</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <p className="text-3xl md:text-4xl font-bold text-primary mb-1">$420M+</p>
+            <p className="text-sm md:text-base text-gray/70">Levantado por usuarios</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <p className="text-3xl md:text-4xl font-bold text-primary mb-1">&lt; 90s</p>
+            <p className="text-sm md:text-base text-gray/70">Tiempo promedio</p>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
