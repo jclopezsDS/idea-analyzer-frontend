@@ -36,24 +36,24 @@ export function Hero() {
         transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
         className="flex flex-col items-center text-center max-w-5xl -mt-12"
       >
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-center mb-8 tracking-tight leading-[1.05]">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center mb-8 tracking-tight leading-[1.05]">
           Descubre si tu startup tiene{" "}
           <span className="text-primary relative inline-block">
             futuro.
-            <span className="absolute bottom-1 md:bottom-2 left-0 right-0 h-[0.15em] bg-green"></span>
+            <span className="absolute -bottom-0.5 md:bottom-0 left-0 right-0 h-[0.15em] bg-green"></span>
           </span>
           <br />
-          <span className="text-gray/90 text-4xl md:text-6xl lg:text-7xl">Ahora mismo.</span>
+          <span className="text-gray/90 text-3xl md:text-5xl lg:text-6xl">Ahora mismo.</span>
         </h1>
 
-        <p className="text-lg md:text-xl lg:text-2xl text-gray/80 max-w-2xl mb-10 leading-relaxed">
+        <p className="text-base md:text-lg lg:text-xl text-gray/80 max-w-2xl mb-9 leading-relaxed">
           IA entrenada en +$500M de rondas analiza tu deck en 90 segundos
         </p>
 
         <Button
           onClick={scrollToForm}
           size="lg"
-          className="bg-primary text-cream hover:bg-primary/95 px-10 py-7 text-base md:text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl shadow-lg"
+          className="bg-primary text-cream hover:bg-primary/95 px-9 py-6 text-base md:text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl shadow-lg"
         >
           Ver mi score en 60 segundos
           <motion.div
@@ -76,18 +76,18 @@ export function Hero() {
         transition={{ delay: 0.5, duration: 0.7 }}
         className="w-full max-w-4xl"
       >
-        <div className="flex flex-wrap justify-center gap-16 md:gap-24 text-center">
+        <div className="flex flex-wrap justify-center gap-14 md:gap-20 text-center">
           <div className="flex flex-col items-center">
-            <p className="text-3xl md:text-4xl font-bold text-primary mb-1">2,847</p>
-            <p className="text-sm md:text-base text-gray/70">Startups analizadas</p>
+            <p className="text-2xl md:text-3xl font-bold text-primary mb-1">2,847</p>
+            <p className="text-xs md:text-sm text-gray/70">Startups analizadas</p>
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-3xl md:text-4xl font-bold text-primary mb-1">$420M+</p>
-            <p className="text-sm md:text-base text-gray/70">Levantado por usuarios</p>
+            <p className="text-2xl md:text-3xl font-bold text-primary mb-1">$420M+</p>
+            <p className="text-xs md:text-sm text-gray/70">Levantado por usuarios</p>
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-3xl md:text-4xl font-bold text-primary mb-1">&lt; 90s</p>
-            <p className="text-sm md:text-base text-gray/70">Tiempo promedio</p>
+            <p className="text-2xl md:text-3xl font-bold text-primary mb-1">&lt; 90s</p>
+            <p className="text-xs md:text-sm text-gray/70">Tiempo promedio</p>
           </div>
         </div>
       </motion.div>
