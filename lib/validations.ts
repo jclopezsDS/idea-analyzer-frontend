@@ -10,13 +10,13 @@ export const personalInfoSchema = z.object({
 // Idea Analysis Schema
 export const ideaSchema = z.object({
   ...personalInfoSchema.shape,
-  nombreProyecto: z.string().min(2, "El nombre del proyecto es requerido"),
-  idea: z.string().min(150, "Describe tu idea con al menos 150 caracteres").max(500),
-  problema: z.string().min(150, "Describe el problema con al menos 150 caracteres").max(500),
-  targetUser: z.string().min(50, "Describe tu target user con al menos 50 caracteres").max(300),
-  diferenciacion: z.string().min(150, "Describe tu diferenciación con al menos 150 caracteres").max(500),
-  validacion: z.string().max(500).optional(),
-  modeloNegocio: z.string().min(150, "Describe tu modelo de negocio con al menos 150 caracteres").max(500),
+  nombreProyecto: z.string().min(2, "El nombre es requerido"),
+  idea: z.string().min(50, "Mínimo 50 caracteres").max(500),
+  problema: z.string().min(50, "Mínimo 50 caracteres").max(500),
+  targetUser: z.string().min(50, "Mínimo 50 caracteres").max(500),
+  diferenciacion: z.string().min(50, "Mínimo 50 caracteres").max(500),
+  validacion: z.string().min(50, "Mínimo 50 caracteres - sé específico con números").max(500),
+  modeloNegocio: z.string().min(50, "Mínimo 50 caracteres").max(500),
 })
 
 // Deck Analysis Schema
@@ -26,7 +26,7 @@ export const deckSchema = z.object({
   montoLevantar: z.string().min(1, "Selecciona un monto"),
   yaLevanto: z.enum(["si", "no"]),
   montoLevantado: z.string().optional(),
-  paraQueCapital: z.string().min(150, "Describe para qué necesitas el capital con al menos 150 caracteres").max(500),
+  paraQueCapital: z.string().min(50, "Mínimo 50 caracteres").max(500),
   deck: z.instanceof(File, { message: "El deck es requerido" })
     .refine((file) => file.size <= 10 * 1024 * 1024, "El archivo debe ser menor a 10MB")
     .refine((file) => file.type === "application/pdf", "Solo se aceptan archivos PDF"),

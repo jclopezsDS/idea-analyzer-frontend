@@ -31,7 +31,10 @@ export function Hero() {
 
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center max-w-4xl mb-6 tracking-tight leading-[1.05]">
           Descubre si tu startup tiene{" "}
-          <span className="text-green">futuro.</span>
+          <span className="text-primary relative">
+            futuro.
+            <span className="absolute bottom-0 left-0 right-0 h-[0.15em] bg-green"></span>
+          </span>
           <br />
           <span className="text-gray/90">Ahora mismo.</span>
         </h1>

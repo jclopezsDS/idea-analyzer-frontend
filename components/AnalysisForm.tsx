@@ -45,7 +45,7 @@ export function AnalysisForm() {
       problema: "",
       targetUser: "",
       diferenciacion: "",
-      validacion: "",
+      validacion: "", // Ahora es requerido
       modeloNegocio: "",
     },
   })
@@ -152,7 +152,7 @@ export function AnalysisForm() {
                     : "bg-cream text-gray hover:bg-beige"
                 )}
               >
-                Analizar Idea
+                Analizar Startup
               </button>
               <button
                 onClick={() => setAnalysisType("deck")}
@@ -231,14 +231,14 @@ export function AnalysisForm() {
                   </div>
 
                   <div className="border-t border-beige pt-6 space-y-4">
-                    <h3 className="font-semibold text-lg text-primary">Tu idea</h3>
+                    <h3 className="font-semibold text-lg text-primary">Tu startup</h3>
 
                     <FormField
                       control={ideaForm.control}
                       name="nombreProyecto"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Nombre del proyecto</FormLabel>
+                          <FormLabel>Nombre</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="Mi Startup" 
@@ -256,10 +256,10 @@ export function AnalysisForm() {
                       name="idea"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Describe tu idea</FormLabel>
+                          <FormLabel>¿Qué hace tu startup?</FormLabel>
                           <FormControl>
                             <Textarea 
-                              placeholder="Explica tu idea de manera clara y concisa..."
+                              placeholder="Describe qué problema resuelves y cómo lo haces..."
                               className="min-h-[100px] resize-none transition-all duration-200 focus:translate-y-[-1px]"
                               {...field}
                             />
@@ -348,10 +348,10 @@ export function AnalysisForm() {
                       name="validacion"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>¿Qué has validado hasta ahora? (opcional)</FormLabel>
+                          <FormLabel>¿Qué tracción tienes?</FormLabel>
                           <FormControl>
                             <Textarea 
-                              placeholder="Encuestas, entrevistas, prototipos, MVPs..."
+                              placeholder="Usuarios, revenue, growth rate, NPS, testimonios de clientes... Sé específico con números."
                               className="min-h-[80px] resize-none transition-all duration-200 focus:translate-y-[-1px]"
                               {...field}
                             />

@@ -100,9 +100,9 @@ export default function SuccessPage() {
           </p>
 
           {reportData && (
-            <div className="bg-green/10 border border-green/20 rounded-xl p-6 mb-6">
+            <div className="bg-green/10 border border-green/30 rounded-xl p-6 mb-6">
               <p className="font-semibold text-primary mb-2">
-                Score Global: {reportData.score_global}/5
+                Score Global: {reportData.score_global}/10
               </p>
               <p className="text-sm text-gray/80">
                 {reportData.insight_principal}
@@ -112,7 +112,7 @@ export default function SuccessPage() {
 
           <div className="bg-cream rounded-xl p-6 mb-8 space-y-4">
             <div className="flex items-start gap-3">
-              <Clock className="w-5 h-5 text-green mt-1 flex-shrink-0" />
+              <Clock className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
               <div className="text-left">
                 <p className="font-semibold text-primary mb-1">
                   Análisis completado en menos de 90 segundos
@@ -124,13 +124,13 @@ export default function SuccessPage() {
             </div>
 
             <div className="flex items-start gap-3">
-              <Mail className="w-5 h-5 text-green mt-1 flex-shrink-0" />
+              <Mail className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
               <div className="text-left">
                 <p className="font-semibold text-primary mb-1">
                   Reporte listo para descargar
                 </p>
                 <p className="text-sm text-gray/80">
-                  PDF profesional con la paleta 30x
+                  Análisis detallado con acciones específicas y timelines
                 </p>
               </div>
             </div>

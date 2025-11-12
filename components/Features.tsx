@@ -15,7 +15,7 @@ const features: FeatureData[] = [
   {
     icon: "/assets/icons/Crecer.svg",
     title: "Benchmark vs startups exitosas",
-    description: "Compara tu idea con las que sí levantaron capital en tu industria"
+    description: "Compara tu startup con las que sí levantaron capital en tu industria"
   },
   {
     icon: "/assets/icons/Network.svg",
