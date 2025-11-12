@@ -1,11 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { motion } from "framer-motion"
-import { Loader2 } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Loader2, Brain, TrendingUp, Users, DollarSign, Target, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -33,6 +33,8 @@ export function AnalysisForm() {
   const router = useRouter()
   const [analysisType, setAnalysisType] = useState<AnalysisType>("idea")
   const [isLoading, setIsLoading] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [currentStep, setCurrentStep] = useState(0)
 
   const ideaForm = useForm<IdeaForm>({
     resolver: zodResolver(ideaSchema),
@@ -64,8 +66,39 @@ export function AnalysisForm() {
     },
   })
 
+  // Animación de progreso durante el análisis
+  useEffect(() => {
+    if (!isLoading) {
+      setProgress(0)
+      setCurrentStep(0)
+      return
+    }
+
+    // Simular progreso basado en tiempo estimado de ~20 segundos
+    const steps = [
+      { time: 0, progress: 0 },
+      { time: 2000, progress: 15 },   // Analizando problema
+      { time: 5000, progress: 35 },   // Analizando mercado
+      { time: 8000, progress: 55 },   // Analizando equipo
+      { time: 11000, progress: 70 },  // Analizando tracción
+      { time: 14000, progress: 85 },  // Analizando financials
+      { time: 17000, progress: 95 },  // Generando reporte
+    ]
+
+    const timers = steps.map(({ time, progress }, index) => 
+      setTimeout(() => {
+        setProgress(progress)
+        setCurrentStep(index)
+      }, time)
+    )
+
+    return () => timers.forEach(timer => clearTimeout(timer))
+  }, [isLoading])
+
   const onSubmitIdea = async (data: IdeaForm) => {
     setIsLoading(true)
+    setProgress(0)
+    setCurrentStep(0)
     
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8002'
@@ -81,20 +114,28 @@ export function AnalysisForm() {
       
       const result = await response.json()
       
+      // Progreso final
+      setProgress(100)
+      
       // Guardar report_id para descarga
       localStorage.setItem('report_id', result.report_id)
       localStorage.setItem('report_data', JSON.stringify(result.report))
       
-      router.push("/success")
+      setTimeout(() => {
+        router.push("/success")
+      }, 500)
     } catch (error) {
       console.error("Error:", error)
       alert("Hubo un error al analizar. Por favor intenta de nuevo.")
       setIsLoading(false)
+      setProgress(0)
     }
   }
 
   const onSubmitDeck = async (data: DeckForm) => {
     setIsLoading(true)
+    setProgress(0)
+    setCurrentStep(0)
     
     try {
       const formData = new FormData()
@@ -116,24 +157,89 @@ export function AnalysisForm() {
       
       const result = await response.json()
       
+      // Progreso final
+      setProgress(100)
+      
       // Guardar report_id para descarga
       localStorage.setItem('report_id', result.report_id)
       localStorage.setItem('report_data', JSON.stringify(result.report))
       
-      router.push("/success")
+      setTimeout(() => {
+        router.push("/success")
+      }, 500)
     } catch (error) {
       console.error("Error:", error)
       alert("Hubo un error al analizar. Por favor intenta de nuevo.")
       setIsLoading(false)
+      setProgress(0)
     }
   }
 
   const currentForm = analysisType === "idea" ? ideaForm : deckForm
 
+  const analysisSteps = [
+    { icon: Brain, label: "Analizando problema y solución", color: "text-green" },
+    { icon: TrendingUp, label: "Evaluando mercado y oportunidad", color: "text-orange" },
+    { icon: Users, label: "Analizando equipo fundador", color: "text-green" },
+    { icon: Target, label: "Verificando tracción y métricas", color: "text-orange" },
+    { icon: DollarSign, label: "Revisando modelo financiero", color: "text-green" },
+    { icon: Zap, label: "Generando tu reporte PDF", color: "text-green" },
+  ]
+
   return (
     <section id="form-section" className="py-32 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-2xl mx-auto">
+          {/* Loading Overlay con Progress Bar */}
+          <AnimatePresence>
+            {isLoading && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center px-6"
+              >
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  className="bg-white rounded-2xl p-10 max-w-md w-full shadow-2xl"
+                >
+                  {/* Icon animado */}
+                  <div className="flex justify-center mb-6">
+                    {React.createElement(analysisSteps[currentStep]?.icon || Brain, {
+                      className: `w-16 h-16 ${analysisSteps[currentStep]?.color || "text-green"}`,
+                      strokeWidth: 1.5
+                    })}
+                  </div>
+
+                  {/* Mensaje actual */}
+                  <h3 className="text-2xl font-bold text-center text-primary mb-2">
+                    Analizando tu startup
+                  </h3>
+                  <p className="text-center text-gray/70 mb-8 min-h-[24px]">
+                    {analysisSteps[currentStep]?.label || "Iniciando análisis..."}
+                  </p>
+
+                  {/* Barra de progreso */}
+                  <div className="relative h-3 bg-beige rounded-full overflow-hidden mb-4">
+                    <motion.div
+                      initial={{ width: "0%" }}
+                      animate={{ width: `${progress}%` }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="absolute inset-y-0 left-0 bg-gradient-to-r from-green to-green/80 rounded-full"
+                    />
+                  </div>
+
+                  {/* Porcentaje y tiempo estimado */}
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="font-semibold text-primary">{Math.round(progress)}%</span>
+                    <span className="text-gray/60">~{Math.max(0, 20 - Math.floor(progress / 5))}s restantes</span>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
